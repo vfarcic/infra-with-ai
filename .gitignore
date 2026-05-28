@@ -1,0 +1,8 @@
+.env
+gcp-creds.json
+kubeconfig-*.yaml
+.devbox/
+.DS_Store
+*.key
+*.pem
+*.crt

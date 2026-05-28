@@ -1,0 +1,37 @@
+apiVersion: sql.gcp.m.upbound.io/v1beta1
+kind: DatabaseInstance
+metadata:
+  name: dot-db
+  namespace: default
+spec:
+  providerConfigRef:
+    kind: ClusterProviderConfig
+    name: default
+  forProvider:
+    databaseVersion: POSTGRES_15
+    deletionProtection: false
+    region: us-east1
+    settings:
+      availabilityType: ZONAL
+      backupConfiguration:
+        enabled: false
+      deletionProtectionEnabled: false
+      diskAutoresize: true
+      diskSize: 10
+      diskType: PD_HDD
+      tier: db-f1-micro
+---
+apiVersion: sql.gcp.m.upbound.io/v1beta1
+kind: Database
+metadata:
+  name: app
+  namespace: default
+spec:
+  providerConfigRef:
+    kind: ClusterProviderConfig
+    name: default
+  forProvider:
+    charset: UTF8
+    instanceRef:
+      name: dot-db
+    deletionPolicy: DELETE
