@@ -17,4 +17,6 @@ def "main setup" [] {
 
     main apply argocd
 
+    main print source
+
 }
