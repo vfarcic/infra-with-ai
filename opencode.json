@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "dot-ai": {
+      "type": "remote",
+      "url": "http://127.0.0.1.nip.io",
+      "headers": {
+        "Authorization": "Bearer my-secret-token"
+      },
+      "oauth": false
+    }
+  }
+}
