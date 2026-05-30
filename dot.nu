@@ -6,6 +6,7 @@ source scripts/crossplane.nu
 source scripts/argocd.nu
 source scripts/atlas.nu
 source scripts/dot-ai.nu
+source scripts/ingress.nu
 
 def "main" [] {}
 
@@ -13,7 +14,7 @@ def "main setup" [] {
 
     main create kubernetes kind --name dot
 
-    main print source
+    let ingress = main apply ingress nginx --provider kind
 
     main apply crossplane --provider google --db-config true
 
@@ -23,6 +24,6 @@ def "main setup" [] {
 
     main print source
 
-    main apply dot-ai
+    main apply dot-ai --host $env.ingress.host
 
 }
