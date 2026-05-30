@@ -5,6 +5,7 @@ source scripts/kubernetes.nu
 source scripts/crossplane.nu
 source scripts/argocd.nu
 source scripts/atlas.nu
+source scripts/dot-ai.nu
 
 def "main" [] {}
 
@@ -21,5 +22,7 @@ def "main setup" [] {
     main apply atlas
 
     main print source
+
+    main apply dot-ai
 
 }
