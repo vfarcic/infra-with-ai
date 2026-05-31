@@ -76,7 +76,7 @@ def "main setup" [] {
 
     (
         main apply dot-ai
-            --host $env.ingress.host
+            --host $ingress.host
             --provider $ai.provider
             --model $ai.model
             --openai-api-key $ai.openai_api_key
