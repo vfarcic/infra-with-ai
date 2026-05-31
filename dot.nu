@@ -88,8 +88,8 @@ def "main setup" [] {
 
 def "main destroy" [] {
 
-    main delete kubernetes kind --name dot
+    main destroy kubernetes kind --name dot --delete_project true
 
-    print $"Remember to (ansi red_bold)delete(ansi reset) the local copy of the (ansi red_bold)repository(ansi reset)."
+    print $"(ansi red_bold)Delete(ansi reset) manually both the remote and local copies of the (ansi red_bold)repository(ansi reset)."
 
 }
