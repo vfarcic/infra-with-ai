@@ -70,8 +70,6 @@ def "main setup" [] {
 
     main apply atlas
 
-    main print source
-
     let ai = main get ai
 
     (
@@ -83,6 +81,8 @@ def "main setup" [] {
             --google-api-key $ai.google_api_key
             --anthropic-api-key $ai.anthropic_api_key
     )
+
+    main print source
 
 }
 
