@@ -554,11 +554,24 @@ Press the (ansi yellow_bold)enter key(ansi reset) to continue.
             --project $project
     )}
 
-    sleep 5sec
+    mut attempts = 0
+    loop {
+        let result = (
+            gcloud iam service-accounts describe $sa --project $project
+                | complete
+        )
+        if $result.exit_code == 0 { break }
+        if $attempts >= 30 {
+            error make { msg: $"Service account ($sa) did not become available in time" }
+        }
+        print $"Waiting for service account (ansi green_bold)($sa)(ansi reset) to propagate..."
+        sleep 2sec
+        $attempts = $attempts + 1
+    }
 
     (
         gcloud projects add-iam-policy-binding
-            --role roles/admin $project
+            --role roles/owner $project
             --member $"serviceAccount:($sa)"
     )
 
